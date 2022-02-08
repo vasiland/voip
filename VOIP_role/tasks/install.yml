@@ -1,0 +1,22 @@
+---
+# tasks file for install-asterisk
+
+- name: Remove existing install source dir
+  file: "path={{ iasterisk_srcdir }} state=absent"
+
+- name: Create install source dir
+  file: "path={{ iasterisk_srcdir }} state=directory"
+
+- name: Download and extract Asterisk source
+  unarchive: "src={{ iasterisk_url }} dest={{ iasterisk_srcdir }} remote_src=yes extra_opts=--strip-components=1"
+
+- name: Build Asterisk from tarball
+  command: "{{ item }} chdir={{ iasterisk_srcdir }}"
+  with_items:
+    - ./configure --libdir=/usr/lib64 --with-jansson-bundled
+    - make menuselect.makeopts
+#    - sed -i -e 's/chan_sip//' menuselect.makeopts
+    - make
+    - make install
+    - make config
+    - make samples

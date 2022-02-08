@@ -1,0 +1,12 @@
+---
+# vars file for install-asterisk
+asterisk_user: asterisk
+asterisk_group: asterisk
+iasterisk_srcdir: /usr/src/asterisk/
+iasterisk_url: http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current.tar.gz
+iasterisk_url_sounds: http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-en-ulaw-current.tar.gz
+iasterisk_path_sound: /var/lib/asterisk/sounds/en
+iasterisk_mysql_database: asterisk
+iasterisk_mysql_server: localhost
+iasterisk_mysql_user: asterisk
+iasterisk_mysql_user_password: secret

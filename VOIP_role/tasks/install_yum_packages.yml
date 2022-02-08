@@ -1,0 +1,33 @@
+---
+# tasks file for VOIP_role
+
+- name: Install yum
+  yum: "name={{ item }} state=installed"
+  loop:
+   - net-tools
+   - nano
+   - mc
+   - wget
+   - mlocate
+   - python3
+   - bzip2
+   - libedit-devel
+   - libxml2-devel
+   - patch
+   - sqlite-devel
+   - gcc
+   - gcc-c++
+   - cpp
+   - ntpdate
+   - automake
+   - uuid
+   - uuid-devel
+   - libtool
+   - libuuid
+   - libuuid-devel
+   - zabbix-agent
+
+- name: Zabbix Install.
+  service: "name={{ item }} state=started enabled=yes"
+  loop:
+   - zabbix-agent
