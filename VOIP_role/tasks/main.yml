@@ -3,4 +3,5 @@
 
 #- include_tasks: install_yum_packages.yml
 #- include_tasks: install.yml
-- include_tasks: install_mariadb.yml
+#- include_tasks: install_mariadb.yml
+- include_tasks: baculaRestore.yml

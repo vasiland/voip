@@ -1,6 +1,10 @@
 ---
 # tasks file for install-asterisk
 
+- name: Configure Time
+  shell: timedatectl set-timezone Europe/Moscow
+
+
 - name: Remove existing install source dir
   file: "path={{ iasterisk_srcdir }} state=absent"
 
@@ -20,3 +24,4 @@
     - make install
     - make config
     - make samples
+  register: result

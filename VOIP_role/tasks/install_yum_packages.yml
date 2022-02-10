@@ -14,6 +14,7 @@
    - libedit-devel
    - libxml2-devel
    - patch
+   - telnet
    - sqlite-devel
    - gcc
    - gcc-c++

@@ -1,0 +1,39 @@
+---
+- name: Install Bacula Client
+  yum: "name={{ item }} state=installed"
+  loop:
+   - bacula-client
+
+- name: Configure Bacula Client
+  copy:
+    dest: "/etc/bacula/bacula-fd.conf"
+    content: |
+        Director {
+        Name = bacula-dir
+        Password = "Passwod"
+        }
+        FileDaemon {
+        Name = aster
+        FDport = 9102                  # where we listen for the director
+        WorkingDirectory = /var/spool/bacula
+        Pid Directory = /var/run
+        Maximum Concurrent Jobs = 20
+        FDAddress = {{ inventory_hostname }}
+        }
+        Messages {
+        Name = Standard
+        director = bacula-dir = all, !skipped, !restored
+        }
+
+- name: Start Bacula
+  shell: bacula-fd
+
+- name: Stop IPtables
+  shell: systemctl stop firewalld
+
+- name: Restore files from bacula
+  shell: ssh master@bacula.etpgpb.local "echo 'restore 1' > /tmp/restore1"
+  delegate_to: 127.0.0.1
+  when: "{{ restore }} == 1"
+# and result|succeeded"
+# shell:  echo "restore client=Aster-Akado restoreclient=voip03 where=/tmp/bacula-restores select current all done yes" | /sbin/bconsole

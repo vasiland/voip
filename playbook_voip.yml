@@ -3,6 +3,6 @@
 - name: Install
   hosts: voip
   become: yes
-  
+
   roles:
    - VOIP_role
