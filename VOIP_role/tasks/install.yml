@@ -19,7 +19,6 @@
   with_items:
     - ./configure --libdir=/usr/lib64 --with-jansson-bundled
     - make menuselect.makeopts
-#    - sed -i -e 's/chan_sip//' menuselect.makeopts
     - make
     - make install
     - make config

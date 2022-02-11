@@ -7,19 +7,19 @@
    - epel-release
    - mariadb
    - mariadb-server
-- name: configure CNF  for MariaDB in /etc/my.cnf
-  ini_file:
-   dest: "/etc/my.cnf"
-   section: "asterisk-pg-connector"
-   create: true
-   option: "{{ item.option }}"
-   value: "{{ item.value }}"
-  with_items:
-    - { option: "Description", value: "PostgreSQL connection to 'asterisk' database"}
-    - { option: "Driver", value:  "PostgreSQL" }
-    - { option: "Database", value:  '{{iasterisk_mysql_database}}' }
-    - { option: "Servername", value:  '{{iasterisk_mysql_server}}' }
-    - { option: "Port", value: "5432" }
-    - { option: "Protocol", value: "8.1" }
-    - { option: "ReadOnly", value: "No" }
+#- name: configure CNF  for MariaDB in /etc/my.cnf
+#  ini_file:
+#   dest: "/etc/my.cnf"
+#   section: "asterisk-pg-connector"
+#   create: true
+#   option: "{{ item.option }}"
+#   value: "{{ item.value }}"
+#  with_items:
+#    - { option: "Description", value: "PostgreSQL connection to 'asterisk' database"}
+#    - { option: "Driver", value:  "PostgreSQL" }
+#    - { option: "Database", value:  '{{iasterisk_mysql_database}}' }
+#    - { option: "Servername", value:  '{{iasterisk_mysql_server}}' }
+#    - { option: "Port", value: "5432" }
+#    - { option: "Protocol", value: "8.1" }
+#    - { option: "ReadOnly", value: "No" }
 

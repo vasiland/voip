@@ -14,11 +14,12 @@
         }
         FileDaemon {
         Name = aster
-        FDport = 9102                  # where we listen for the director
+        FDport = 9102
         WorkingDirectory = /var/spool/bacula
         Pid Directory = /var/run
         Maximum Concurrent Jobs = 20
-        FDAddress = {{ inventory_hostname }}
+        FDAddress = {{ ENS160 }}
+#        FDAddress = {{ ansible_default_ipv4.address }}
         }
         Messages {
         Name = Standard
@@ -32,8 +33,7 @@
   shell: systemctl stop firewalld
 
 - name: Restore files from bacula
-  shell: ssh master@bacula.etpgpb.local "echo 'restore 1' > /tmp/restore1"
+  shell:  echo "restore client=Aster-Akado restoreclient=voip03 select current all done yes" | /sbin/bconsole
   delegate_to: 127.0.0.1
-  when: "{{ restore }} == 1"
-# and result|succeeded"
-# shell:  echo "restore client=Aster-Akado restoreclient=voip03 where=/tmp/bacula-restores select current all done yes" | /sbin/bconsole
+  when: "{{ restore }} == true and result == succeeded"
+  
