@@ -23,12 +23,13 @@
    - automake
    - uuid
    - uuid-devel
+   - ntpdate
    - libtool
    - libuuid
    - libuuid-devel
-   - zabbix-agent
-
-- name: Zabbix Install.
-  service: "name={{ item }} state=started enabled=yes"
-  loop:
-   - zabbix-agent
+#   - zabbix-agent
+#
+#- name: Zabbix Install.
+#  service: "name={{ item }} state=started enabled=yes"
+#  loop:
+#   - zabbix-agent

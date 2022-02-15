@@ -1,8 +1,8 @@
 ---
 
 - name: Install
-  hosts: {{ SERVER_NAME }}
+  hosts: "{{ SERVER_NAME }}"
   become: yes
-
+  remote_user: master
   roles:
    - VOIP_role

@@ -19,7 +19,6 @@
         Pid Directory = /var/run
         Maximum Concurrent Jobs = 20
         FDAddress = {{ ENS160 }}
-#        FDAddress = {{ ansible_default_ipv4.address }}
         }
         Messages {
         Name = Standard
@@ -33,7 +32,5 @@
   shell: systemctl stop firewalld
 
 - name: Restore files from bacula
-  shell:  echo "restore client=Aster-Akado restoreclient=voip03 select current all done yes" | /sbin/bconsole
-  delegate_to: 127.0.0.1
-  when: "{{ restore }} == true and result == succeeded"
-  
+  local_action: shell ssh master@bacula "sudo echo restore client=Aster-Akado restoreclient=voip03 select current all done yes | /sbin/bconsole"
+  when: "{{ restore }} == true"
